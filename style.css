@@ -30,3 +30,9 @@ header a {
     align-content: center;
     text-align: center;
 }
+
+footer {
+    background: #c0c0c0;
+    color: #020202;
+    text-align: center;
+}
