@@ -1,0 +1,32 @@
+header {
+    background: #c0c0c0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+header a {
+    color: #020202;
+    text-align: center;
+}
+
+.menu_navegacao {
+    display: flex;
+    align-content: center;
+}
+
+.menu_navegacao a {
+    text-align: center;
+    flex: 1 1 1;
+}
+
+.menu_busca {
+    display: flex;
+    align-content: center;
+    text-align: center;
+}
