@@ -31,6 +31,15 @@ header a {
     text-align: center;
 }
 
+main div div h1 {
+    text-align: center;
+}
+
+.carousel-indicators {
+    align-content: center;
+
+}
+
 footer {
     background: #c0c0c0;
     color: #020202;
