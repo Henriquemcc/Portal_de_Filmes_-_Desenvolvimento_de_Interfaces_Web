@@ -65,16 +65,16 @@ main div div h1 {
     background-color: #c3c3c3;
 }
 
-#menu_em_destaque {
+#section_destaque {
     position: relative;
 }
 
-#menu_em_destaque h1 {
+#section_destaque h1 {
     position: absolute;
     left: 0px;
 }
 
-#menu_em_destaque .dropdown {
+#section_destaque .dropdown {
     position: absolute;
     right: 0px;
 }
