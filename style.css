@@ -48,6 +48,16 @@ main div div h1 {
     max-height: 100%;
 }
 
+.botoes_carousel .carousel-indicators button.active {
+    display: inline-block;
+    background-color: #535353;
+}
+
+.botoes_carousel .carousel-indicators button:not(.active) {
+    display: inline-block;
+    background-color: #c3c3c3;
+}
+
 footer {
     background: #c0c0c0;
     color: #020202;
