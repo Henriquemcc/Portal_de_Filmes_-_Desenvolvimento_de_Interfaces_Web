@@ -66,8 +66,11 @@ main div div h1 {
 }
 
 #section_destaque .dropdown button {
-    position: absolute;
-    right: 0px;
+    float: right;
+}
+
+#section_destaque h1 {
+    text-align: left;
 }
 
 
