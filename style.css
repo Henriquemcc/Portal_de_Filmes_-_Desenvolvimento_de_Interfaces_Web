@@ -35,6 +35,10 @@ main div div h1 {
     text-align: center;
 }
 
+.main_lancamentos {
+    margin: 20px;
+}
+
 .carousel-indicators {
     align-content: center;
 }
