@@ -73,6 +73,15 @@ main div div h1 {
     text-align: left;
 }
 
+#section_destaque #cards_filmes_destaque .row .col-3 {
+    margin-bottom: 10px;
+}
+
+#section_destaque #cards_filmes_destaque img {
+    width: 300px;
+    height: 450px;
+}
+
 
 footer {
     background: #c0c0c0;
