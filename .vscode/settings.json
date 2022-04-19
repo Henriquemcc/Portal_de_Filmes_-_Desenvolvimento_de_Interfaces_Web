@@ -1,6 +1,6 @@
 {
     "editor.formatOnSave": true,
-    "html.format.preserveNewLines": false,
+    "html.format.preserveNewLines": true,
     "html.format.wrapAttributes": "auto",
     "html.format.wrapLineLength": 0
 }
