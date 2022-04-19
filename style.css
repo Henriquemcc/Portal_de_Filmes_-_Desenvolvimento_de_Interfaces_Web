@@ -82,6 +82,10 @@ main div div h1 {
     height: 450px;
 }
 
+#section_ultimas_avaliacoes h1 {
+    text-align: left;
+}
+
 
 footer {
     background: #c0c0c0;
