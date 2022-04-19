@@ -43,6 +43,12 @@ main div div h1 {
     align-content: center;
 }
 
+.carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
 .carousel-item div iframe {
     max-width: 100%;
     max-height: 100%;
