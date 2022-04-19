@@ -39,8 +39,8 @@ main div div h1 {
     margin: 20px;
 }
 
-.carousel-indicators {
-    align-content: center;
+.carousel .carousel-indicators {
+    position: relative;
 }
 
 .carousel .carousel-indicators button {
