@@ -86,6 +86,28 @@ main div div h1 {
     text-align: left;
 }
 
+#section_ultimas_avaliacoes #cards_ultimas_avaliacoes .card-header {
+    justify-content: space-between;
+}
+
+#section_ultimas_avaliacoes #cards_ultimas_avaliacoes img {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+#section_ultimas_avaliacoes #cards_ultimas_avaliacoes h2 {
+    display: inline;
+    vertical-align: middle;
+}
+
+#section_ultimas_avaliacoes #cards_ultimas_avaliacoes .card-text {
+    margin: 5px;
+}
+
 
 footer {
     background: #c0c0c0;
