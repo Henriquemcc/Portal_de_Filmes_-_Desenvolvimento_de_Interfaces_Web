@@ -102,6 +102,7 @@ main div div h1 {
 #section_ultimas_avaliacoes #cards_ultimas_avaliacoes h2 {
     display: inline;
     vertical-align: middle;
+    margin-left: 5px;
 }
 
 #section_ultimas_avaliacoes #cards_ultimas_avaliacoes .card-text {
