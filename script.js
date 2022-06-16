@@ -1,6 +1,22 @@
 const API_KEY = "2d2acb82a666c20e59e8df89dfb3ce28";
 const LANGUAGE = "pt-BR";
 
+// Em caso de erro na execução da requisição, esta página será construida para exibir a mensagem de erro.
+const XML_HTTP_REQUEST_ON_ERROR = function () {
+  let htmlString = "";
+  htmlString += "<main>";
+  htmlString += '<div style="text-align: center;">';
+  htmlString += "<h1>Erro ao construir página HTML</h1>";
+  htmlString += "<h2>Erro ao realizar 'XMLHttpRequest'</h2>";
+  htmlString += `<p style="color: red;">Status: ${this.status}</p>`;
+  htmlString += `<p style="color: red;">Status Text:${this.statusText}</p>`;
+  htmlString += `<p style="color: red;">Response Text:${this.responseText}</p>`;
+  htmlString += "</div>";
+  htmlString += "</main>";
+
+  document.body.innerHTML = htmlString;
+};
+
 /**
  * Constrói a página de filmes em lançamento.
  */
@@ -8,22 +24,8 @@ function construirFilmesLancamentos() {
   // Criando objeto XMLHttpRequest
   let xmlHttpRequestObject = new XMLHttpRequest();
 
-  // Em caso de erro na execução da requisição, a página será construida para exibir uma mensagem de erro.
-  xmlHttpRequestObject.onerror = function () {
-    let htmlString = "";
-    htmlString += "<main>";
-    htmlString += '<div style="text-align: center;">';
-    htmlString += "<h1>Erro ao construir página HTML</h1>";
-    htmlString += "<h2>Erro ao realizar 'XMLHttpRequest'</h2>";
-    htmlString += `<p style="color: red;">Status: ${this.status}</p>`;
-    htmlString += `<p style="color: red;">Status Text:${this.statusText}</p>`;
-    htmlString +=
-      `<p style="color: red;">Response Text:${this.responseText}</p>`;
-    htmlString += "</div>";
-    htmlString += "</main>";
-
-    document.body.innerHTML = htmlString;
-  };
+  // Em caso de erro na execução da requisição, esta página será construida para exibir a mensagem de erro.
+  xmlHttpRequestObject.onerror = XML_HTTP_REQUEST_ON_ERROR;
 
   // Em caso de sucesso na execução da requisição, a página será construida com os dados obtidos por esta função.
   xmlHttpRequestObject.onload = function () {
