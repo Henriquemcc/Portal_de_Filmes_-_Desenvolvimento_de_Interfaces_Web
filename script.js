@@ -1,5 +1,5 @@
 const API_KEY = "2d2acb82a666c20e59e8df89dfb3ce28";
-const LANGUAGE = "pt-BR";
+let LANGUAGE = navigator.language || navigator.userLanguage || "pt-BR";
 
 // Em caso de erro na execução da requisição, esta página será construida para exibir a mensagem de erro.
 const XML_HTTP_REQUEST_ON_ERROR = function () {
