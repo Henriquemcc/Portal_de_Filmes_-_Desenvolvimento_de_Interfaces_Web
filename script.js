@@ -75,7 +75,51 @@ function construirFilmesLancamentos() {
   xmlHttpRequestObject.send();
 }
 
+/**
+ * Constrói a página de filmes em destaque
+ */
+function construirFilmesEmDestaque() {
+  // Criando objeto XMLHttpRequest
+  let xmlHttpRequestObject = new XMLHttpRequest();
+
+  // Em caso de erro na execução da requisição, esta página será construida para exibir a mensagem de erro.
+  xmlHttpRequestObject.onerror = XML_HTTP_REQUEST_ON_ERROR;
+
+  // Em caso de sucesso na execução da requisição, a página será construida com os dados obtidos por esta função.
+  xmlHttpRequestObject.onload = function () {
+    // Convertendo string em objeto
+    let dados = JSON.parse(this.responseText);
+
+    // Construindo HTMLstring
+    let htmlString = "";
+
+    // Adicionando filmes
+    if (dados.results != null) {
+      dados.results.forEach(
+        (value, index) => {
+          htmlString += '<div class="col-3">';
+          htmlString += '<a href="#">';
+          htmlString +=
+            `<img src="https://image.tmdb.org/t/p/original/${value.poster_path}" alt="${value.name}">`;
+          htmlString += "</a>";
+          htmlString += "</div>";
+        },
+      );
+    }
+
+    document.querySelector("main #section_destaque #cards_filmes_destaque .row")
+      .innerHTML = htmlString;
+  };
+
+  xmlHttpRequestObject.open(
+    "GET",
+    `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=${LANGUAGE}`,
+  );
+  xmlHttpRequestObject.send();
+}
+
 // Executando as funções de construção de página.
 onload = function () {
   construirFilmesLancamentos();
+  construirFilmesEmDestaque();
 };
