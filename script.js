@@ -34,8 +34,6 @@ function construirFilmesLancamentos() {
     let htmlString = "";
 
     // Adicionando filmes
-    console.log(`dados.results = ${dados.results}`);
-    console.log(`dados.results.length = ${dados.results.length}`);
     if (dados.results != null) {
       dados.results.forEach(
         (value, index) => {
