@@ -4,12 +4,17 @@ const LANGUAGE = "pt-BR";
 /**
  * Armazena os dados obtidos dos filmes em lançamento ('now_playing').
  */
-let dadosFilmesLancamentos;
+let dadosDosFilmesEmLancamento;
 
 /**
  * Armazena os dados obtidos dos filmes em destaque ('trending').
  */
-let dadosFilmesDestaque;
+let dadosDosFilmesEmDestaque;
+
+/**
+ * Armazena os dados das avaliações dos filmes.
+ */
+let avaliacoesDosFilmes = new Array();
 
 /**
  * Constrói página de erro para erros de XmlHttpRequest.
@@ -32,7 +37,7 @@ function construirPaginaErroXmlHttpRequest() {
 /**
  * Obtém do 'The Movie DB' os dados dos filmes em lançamento.
  */
-function obterDadosFilmesLancamento() {
+function obterDadosDosFilmesEmLancamento() {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
@@ -41,13 +46,13 @@ function obterDadosFilmesLancamento() {
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
   xmlHttpRequestObject.send();
-  dadosFilmesLancamentos = JSON.parse(xmlHttpRequestObject.responseText);
+  dadosDosFilmesEmLancamento = JSON.parse(xmlHttpRequestObject.responseText);
 }
 
 /**
  * Obtém do 'The Movie DB' os dados dos filmes em destaque.
  */
-function obterDadosFilmesDestaque() {
+function obterDadosDosFilmesEmDestaque() {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
@@ -56,22 +61,95 @@ function obterDadosFilmesDestaque() {
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
   xmlHttpRequestObject.send();
-  dadosFilmesDestaque = JSON.parse(xmlHttpRequestObject.responseText);
+  dadosDosFilmesEmDestaque = JSON.parse(xmlHttpRequestObject.responseText);
 }
 
 /**
- * Constrói a página de filmes em lançamento.
+ * Classe que representa uma avaliação de um filme.
  */
-function construirFilmesLancamentos() {
-  // Convertendo string em objeto
-  let dados = dadosFilmesLancamentos;
+class Avaliacao {
+  /**
+   * Constrói uma instância da classe Avaliação.
+   * @param {String} filme Nome do filme ou série a ser avaliado.
+   * @param {String} autor Nome de quem o avaliou.
+   * @param {String} imagemAutor Url da imagem do autor.
+   * @param {String} avaliacao Texto da avaliação.
+   */
+  constructor(filme, autor, imagemAutor, avaliacao) {
+    this.filme = filme;
+    this.autor = autor;
+    this.imagemAutor = imagemAutor;
+    this.avaliacao = avaliacao;
+  }
+}
 
+/**
+ * Obtém do 'The Movie DB' os dados das avaliações dos filmes em lançamento e em destaque.
+ */
+function obterDadosDasAvaliacoes() {
+  let dadosDosFilmes = new Array();
+
+  if (
+    dadosDosFilmesEmDestaque != null && dadosDosFilmesEmDestaque.results != null
+  ) {
+    dadosDosFilmes = dadosDosFilmes.concat(dadosDosFilmesEmDestaque.results);
+  }
+
+  if (
+    dadosDosFilmesEmLancamento != null &&
+    dadosDosFilmesEmLancamento.results != null
+  ) {
+    dadosDosFilmes = dadosDosFilmes.concat(dadosDosFilmesEmLancamento.results);
+  }
+
+  // Removendo filmes repetidos
+  dadosDosFilmes = new Array(...new Set(dadosDosFilmes));
+
+  dadosDosFilmes.forEach(
+    (dadosDeFilme) => {
+      try {
+        // Baixando review do filme
+        let xmlHttpRequestObject = new XMLHttpRequest();
+        xmlHttpRequestObject.open(
+          "GET",
+          `https://api.themoviedb.org/3/movie/${dadosDeFilme.id}/reviews?api_key=${API_KEY}`,
+          false,
+        );
+        xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
+        xmlHttpRequestObject.send();
+        let dadosDosReviewsDoFilme = JSON.parse(
+          xmlHttpRequestObject.responseText,
+        );
+
+        dadosDosReviewsDoFilme.results.forEach(
+          (reviewDoFilme) => {
+            avaliacoesDosFilmes.push(
+              new Avaliacao(
+                dadosDeFilme.title,
+                reviewDoFilme.author,
+                reviewDoFilme.author_details.avatar_path,
+                reviewDoFilme.content,
+              ),
+            );
+          },
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  );
+}
+
+/**
+ * Constrói o pedaço da página de filmes em lançamento.
+ */
+function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
   // Construindo HTMLstring
   let htmlString = "";
 
   // Adicionando filmes
-  if (dados.results != null) {
-    dados.results.forEach(
+  if (dadosDosFilmesEmLancamento.results != null) {
+    dadosDosFilmesEmLancamento.results.forEach(
       (value, index) => {
         if (index == 0) {
           htmlString += `<div class="carousel-item active">`; // div1: Inicio
@@ -105,16 +183,13 @@ function construirFilmesLancamentos() {
 /**
  * Constrói a página de filmes em destaque
  */
-function construirFilmesEmDestaque() {
-  // Convertendo string em objeto
-  let dados = dadosFilmesDestaque;
-
+function construirPedacoDaPaginaSobreFilmesEmDestaque() {
   // Construindo HTMLstring
   let htmlString = "";
 
   // Adicionando filmes
-  if (dados.results != null) {
-    dados.results.forEach(
+  if (dadosDosFilmesEmDestaque.results != null) {
+    dadosDosFilmesEmDestaque.results.forEach(
       (value, index) => {
         htmlString += '<div class="col-3">';
         htmlString += '<a href="#">';
@@ -132,10 +207,11 @@ function construirFilmesEmDestaque() {
 
 onload = function () {
   // Obtendo dados do 'The Movie DB'
-  obterDadosFilmesLancamento();
-  obterDadosFilmesDestaque();
+  obterDadosDosFilmesEmLancamento();
+  obterDadosDosFilmesEmDestaque();
+  obterDadosDasAvaliacoes();
 
   // Construindo pedaços da página HTML
-  construirFilmesLancamentos();
-  construirFilmesEmDestaque();
+  construirPedacoDaPaginaSobreFilmesEmLancamentos();
+  construirPedacoDaPaginaSobreFilmesEmDestaque();
 };
