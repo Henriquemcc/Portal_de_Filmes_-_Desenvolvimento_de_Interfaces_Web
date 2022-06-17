@@ -144,7 +144,7 @@ function obterDadosDasAvaliacoes() {
               new Avaliacao(
                 dadosDeFilme.title,
                 reviewDoFilme.author,
-                reviewDoFilme.author_details.avatar_path,
+                reviewDoFilme.author_details.avatar_path.substring(1),
                 reviewDoFilme.content,
                 reviewDoFilme.created_at,
               ),
@@ -226,6 +226,32 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
     .innerHTML = htmlString;
 }
 
+function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
+  // Construindo HTMLString
+  let htmlString = "";
+
+  // Adicionando avaliações
+  for (let i = avaliacoesDosFilmes.length - 1; i >= 0; i--) {
+    let avaliacao = avaliacoesDosFilmes[i];
+
+    htmlString += '<div class="col-4">';
+    htmlString += '<div class="card">';
+    htmlString += '<div class="card-header">';
+    htmlString +=
+      `<img src="${avaliacao.imagemAutor}" alt="${avaliacao.autor}">`;
+    htmlString += `<h2 class="card-title">${avaliacao.autor}</h2>`;
+    htmlString += "</div>";
+    htmlString +=
+      `<p class="card-text"><b>Avaliação:</b>${avaliacao.avaliacao}</p>`;
+    htmlString += "</div>";
+    htmlString += "</div>";
+  }
+
+  document.querySelector(
+    "main #section_ultimas_avaliacoes #cards_ultimas_avaliacoes > div",
+  ).innerHTML = htmlString;
+}
+
 onload = function () {
   // Obtendo dados do 'The Movie DB'
   obterDadosDosFilmesEmLancamento();
@@ -235,4 +261,5 @@ onload = function () {
   // Construindo pedaços da página HTML
   construirPedacoDaPaginaSobreFilmesEmLancamentos();
   construirPedacoDaPaginaSobreFilmesEmDestaque();
+  construirPedacoDaPaginaSobreUltimasAvaliacoes();
 };
