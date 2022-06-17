@@ -74,13 +74,30 @@ class Avaliacao {
    * @param {String} autor Nome de quem o avaliou.
    * @param {String} imagemAutor Url da imagem do autor.
    * @param {String} avaliacao Texto da avaliação.
+   * @param {Date, String} data Data da avaliação.
    */
-  constructor(filme, autor, imagemAutor, avaliacao) {
+  constructor(filme, autor, imagemAutor, avaliacao, data) {
     this.filme = filme;
     this.autor = autor;
     this.imagemAutor = imagemAutor;
     this.avaliacao = avaliacao;
+
+    if (typeof data == "string") {
+      this.data = new Date(data);
+    } else if (typeof data == "object" && data instanceof Date) {
+      this.data = data;
+    }
   }
+}
+
+/**
+ * Compara duas instâncias da classe Avaliacao de acordo com a data.
+ * @param {Avaliacao} a Instância da classe Avaliacao a ser comparada com 'b'.
+ * @param {Avaliacao} b Instância da classe Avaliacao a ser comparada com 'a'.
+ * @returns Valor numérico indicando a diferença entre as datas das avaliações.
+ */
+function compararObjetosClasseAvaliacaoPorData(a, b) {
+  return a.data - b.data;
 }
 
 /**
@@ -129,6 +146,7 @@ function obterDadosDasAvaliacoes() {
                 reviewDoFilme.author,
                 reviewDoFilme.author_details.avatar_path,
                 reviewDoFilme.content,
+                reviewDoFilme.created_at,
               ),
             );
           },
@@ -138,6 +156,9 @@ function obterDadosDasAvaliacoes() {
       }
     },
   );
+
+  // Ordenando as avaliações por data.
+  avaliacoesDosFilmes.sort(compararObjetosClasseAvaliacaoPorData);
 }
 
 /**
