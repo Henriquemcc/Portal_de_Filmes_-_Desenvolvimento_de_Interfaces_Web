@@ -101,6 +101,20 @@ function compararObjetosClasseAvaliacaoPorData(a, b) {
 }
 
 /**
+ * Verifica se uma string é uma URL http válida.
+ * @param {String} str String a ser verificada.
+ * @return Valor booleano indicando se a String passada é uma URL http válida.
+ */
+function stringIsValidHttpUrl(str) {
+  try {
+    let url = new URL(str);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Obtém do 'The Movie DB' os dados das avaliações dos filmes em lançamento e em destaque.
  */
 function obterDadosDasAvaliacoes() {
@@ -129,7 +143,7 @@ function obterDadosDasAvaliacoes() {
         let xmlHttpRequestObject = new XMLHttpRequest();
         xmlHttpRequestObject.open(
           "GET",
-          `https://api.themoviedb.org/3/movie/${dadosDeFilme.id}/reviews?api_key=${API_KEY}`,
+          `https://api.themoviedb.org/3/movie/${dadosDeFilme.id}/reviews?api_key=${API_KEY}&language=${LANGUAGE}`,
           false,
         );
         xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
@@ -140,11 +154,35 @@ function obterDadosDasAvaliacoes() {
 
         dadosDosReviewsDoFilme.results.forEach(
           (reviewDoFilme) => {
+            // Obtendo a Url da imagem de quem escreveu o review
+            let urlAvatar = reviewDoFilme.author_details.avatar_path;
+
+            // Caso a url não começe com http
+            if (!urlAvatar.startsWith("http")) {
+              // Caso a url tenha um '/' antes de http
+              if (urlAvatar.startsWith("/http")) {
+                console.log("oi");
+                urlAvatar = urlAvatar.substring(1);
+              } // Caso a url não tenha http(s)://
+              else if (
+                (!urlAvatar.includes("http://")) &&
+                (!urlAvatar.includes("https://"))
+              ) {
+                urlAvatar =
+                  `https://image.tmdb.org/t/p/original/${reviewDoFilme.author_details.avatar_path}`;
+              }
+            }
+
+            // Url da imagem será nula se for inválida
+            if (!stringIsValidHttpUrl(urlAvatar)) {
+              urlAvatar = null;
+            }
+
             avaliacoesDosFilmes.push(
               new Avaliacao(
                 dadosDeFilme.title,
                 reviewDoFilme.author,
-                reviewDoFilme.author_details.avatar_path.substring(1),
+                urlAvatar,
                 reviewDoFilme.content,
                 reviewDoFilme.created_at,
               ),
@@ -231,18 +269,21 @@ function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
   let htmlString = "";
 
   // Adicionando avaliações
-  for (let i = avaliacoesDosFilmes.length - 1; i >= 0; i--) {
+
+  for (let i = avaliacoesDosFilmes.length - 1; i > 0; i--) {
     let avaliacao = avaliacoesDosFilmes[i];
 
     htmlString += '<div class="col-4">';
     htmlString += '<div class="card">';
     htmlString += '<div class="card-header">';
-    htmlString +=
-      `<img src="${avaliacao.imagemAutor}" alt="${avaliacao.autor}">`;
+    if (avaliacao.imagemAutor != null) {
+      htmlString +=
+        `<img src="${avaliacao.imagemAutor}" alt="${avaliacao.autor}">`;
+    }
     htmlString += `<h2 class="card-title">${avaliacao.autor}</h2>`;
     htmlString += "</div>";
     htmlString +=
-      `<p class="card-text"><b>Avaliação:</b>${avaliacao.avaliacao}</p>`;
+      `<p class="card-text"><b>${avaliacao.filme}:</b> ${avaliacao.avaliacao}</p>`;
     htmlString += "</div>";
     htmlString += "</div>";
   }
