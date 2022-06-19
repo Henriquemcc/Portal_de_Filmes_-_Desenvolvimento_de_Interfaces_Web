@@ -161,7 +161,6 @@ function obterDadosDasAvaliacoes() {
             if (!urlAvatar.startsWith("http")) {
               // Caso a url tenha um '/' antes de http
               if (urlAvatar.startsWith("/http")) {
-                console.log("oi");
                 urlAvatar = urlAvatar.substring(1);
               } // Caso a url não tenha http(s)://
               else if (
