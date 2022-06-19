@@ -26,19 +26,40 @@
 
     <!-- Cabeçalho - Inicio -->
     <header class="container">
-        <!-- Logo - Inicio -->
-        <div class="menu_logo"> <a href="..">Portal Meus Filmes</a> </div>
-        <!-- Logo - Fim -->
 
-        <!-- Menu navegação - Inicio -->
-        <nav class="nav menu_navegacao">
-            <a href="../#section_lancamentos" class="nav-link active">lançamentos</a>
-            <a href="../#section_destaque" class="nav-link active">em destaque</a>
-            <a href="../#section_ultimas_avaliacoes" class="nav-link active">avaliações</a>
-            <a href="../#" class="nav-link active">entrevistas & makingof</a>
-            <a href="../#" class="nav-link active">novidades</a>
-        </nav>
-        <!-- Menu navegação - Fim -->
+        <!-- Dividindo entre o (Logo e Menu navegação) e o Menu busca -->
+        <div class="row">
+            <!-- Logo e Menu navegação -->
+            <div class="col-12">
+                <!-- Logo - Inicio -->
+                <div class="menu_logo"> <a href="..">Portal Meus Filmes</a> </div>
+                <!-- Logo - Fim -->
+
+                <!-- Menu navegação - Inicio -->
+                <nav class="nav menu_navegacao">
+                    <a href="../#section_lancamentos" class="nav-link active">lançamentos</a>
+                    <a href="../#section_destaque" class="nav-link active">em destaque</a>
+                    <a href="../#section_ultimas_avaliacoes" class="nav-link active">avaliações</a>
+                    <a href="../#" class="nav-link active">entrevistas & makingof</a>
+                    <a href="../#" class="nav-link active">novidades</a>
+                </nav>
+                <!-- Menu navegação - Fim -->
+            </div>
+
+            <!-- Menu busca - Inicio -->
+            <div class="col-12">
+                <div id="menu_busca">
+                    <form action="." method="get">
+                        <input type="text" name="search" id="search-movie" class="form-control" aria-label="Pesquisar">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+                <!-- Menu busca - Fim -->
+            </div>
+
+        </div>
 
     </header>
     <!-- Cabeçalho - Fim -->
