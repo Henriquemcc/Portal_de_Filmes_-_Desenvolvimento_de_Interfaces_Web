@@ -17,3 +17,10 @@ header {
     display: flex;
     flex: 1;
 }
+
+/* Rodapé da página */
+footer {
+    background: #c0c0c0;
+    color: #020202;
+    text-align: center;
+}
