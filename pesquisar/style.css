@@ -6,3 +6,14 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
+/* Barra de pesquisa */
+#search-bar {
+    display: inline;
+}
+
+/* Form do botão de pesquisa e da barra de pesquisa */
+#menu_busca>form {
+    display: flex;
+    flex: 1;
+}
