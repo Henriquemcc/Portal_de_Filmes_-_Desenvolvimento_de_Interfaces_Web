@@ -274,7 +274,7 @@ function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
   for (let i = avaliacoesDosFilmes.length - 1; i > 0; i--) {
     let avaliacao = avaliacoesDosFilmes[i];
 
-    htmlString += '<div class="col-4">';
+    htmlString += '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
     htmlString += '<div class="card">';
     htmlString += '<div class="card-header">';
     if (avaliacao.imagemAutor != null) {
