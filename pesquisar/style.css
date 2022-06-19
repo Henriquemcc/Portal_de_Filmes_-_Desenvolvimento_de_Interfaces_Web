@@ -24,3 +24,21 @@ footer {
     color: #020202;
     text-align: center;
 }
+
+.box-resultado {
+    margin: 10px 10px;
+    overflow: auto;
+    color: dimgray;
+    clear: both;
+}
+
+.box-resultado img {
+    float: left;
+    margin-right: 10px;
+    width: 180px;
+}
+
+.box-resultado .titulo,
+.box-resultado .titulo-original {
+    font-weight: 700;
+}
