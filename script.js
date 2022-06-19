@@ -115,6 +115,34 @@ function stringIsValidHttpUrl(str) {
 }
 
 /**
+ * Converte a URL de uma imagem do 'The Movie DB' para uma URL válida.
+ * @param {String} url Url a ser convertida para uma url válida.
+ * @returns Url válida para a imagem ou null.
+ */
+function ConverterUrlImagemTheMovieDb(url) {
+  // Removendo '\'
+  if (url.startsWith("\\")) {
+    url = url.substring(1);
+  }
+
+  // Removendo '/'
+  if (url.startsWith("/")) {
+    url = url.substring(1);
+  }
+
+  // Adicionando 'https://image.tmdb.org/t/p/original/' a url
+  if ((!url.startsWith("http://")) && (!url.startsWith("https://"))) {
+    url = `https://image.tmdb.org/t/p/original/${url}`;
+  }
+
+  if (!stringIsValidHttpUrl(url)) {
+    url = null;
+  }
+
+  return url;
+}
+
+/**
  * Obtém do 'The Movie DB' os dados das avaliações dos filmes em lançamento e em destaque.
  */
 function obterDadosDasAvaliacoes() {
@@ -154,34 +182,13 @@ function obterDadosDasAvaliacoes() {
 
         dadosDosReviewsDoFilme.results.forEach(
           (reviewDoFilme) => {
-            // Obtendo a Url da imagem de quem escreveu o review
-            let urlAvatar = reviewDoFilme.author_details.avatar_path;
-
-            // Caso a url não começe com http
-            if (!urlAvatar.startsWith("http")) {
-              // Caso a url tenha um '/' antes de http
-              if (urlAvatar.startsWith("/http")) {
-                urlAvatar = urlAvatar.substring(1);
-              } // Caso a url não tenha http(s)://
-              else if (
-                (!urlAvatar.includes("http://")) &&
-                (!urlAvatar.includes("https://"))
-              ) {
-                urlAvatar =
-                  `https://image.tmdb.org/t/p/original/${reviewDoFilme.author_details.avatar_path}`;
-              }
-            }
-
-            // Url da imagem será nula se for inválida
-            if (!stringIsValidHttpUrl(urlAvatar)) {
-              urlAvatar = null;
-            }
-
             avaliacoesDosFilmes.push(
               new Avaliacao(
                 dadosDeFilme.title,
                 reviewDoFilme.author,
-                urlAvatar,
+                ConverterUrlImagemTheMovieDb(
+                  reviewDoFilme.author_details.avatar_path,
+                ),
                 reviewDoFilme.content,
                 reviewDoFilme.created_at,
               ),
@@ -224,8 +231,10 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
 
         if (value.video) {}
         else {
-          htmlString +=
-            `<img class="movie-poster" src="https://image.tmdb.org/t/p/original/${value.poster_path}">`;
+          let urlImagem = ConverterUrlImagemTheMovieDb(value.poster_path);
+          if (urlImagem != null) {
+            htmlString += `<img class="movie-poster" src="${urlImagem}">`;
+          }
         }
         htmlString += "</div>"; // div4: Fim
         htmlString += "</div>"; // div2: Fim
@@ -253,8 +262,13 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
         htmlString +=
           '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
         htmlString += '<a href="#">';
-        htmlString +=
-          `<img src="https://image.tmdb.org/t/p/original/${value.poster_path}" alt="${value.name}">`;
+
+        let urlImagem = ConverterUrlImagemTheMovieDb(value.poster_path);
+
+        if (urlImagem != null) {
+          htmlString += `<img src="${urlImagem}" alt="${value.name}">`;
+        }
+
         htmlString += "</a>";
         htmlString += "</div>";
       },
