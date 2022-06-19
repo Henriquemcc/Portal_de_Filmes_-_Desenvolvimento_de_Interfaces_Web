@@ -32,7 +32,7 @@ header a {
     flex: 1 1 1;
 }
 
-.menu_busca {
+#menu_busca {
     display: flex;
     align-content: center;
     text-align: center;
