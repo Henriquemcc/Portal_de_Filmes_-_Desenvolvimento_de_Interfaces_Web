@@ -1,5 +1,6 @@
-const API_KEY = "2d2acb82a666c20e59e8df89dfb3ce28";
-const LANGUAGE = "pt-BR";
+import { API_KEY, LANGUAGE } from "./JavaScript/constantes.js";
+import { construirPaginaErroXmlHttpRequest } from "./JavaScript/construir-pagina-erro-xml-http-request.js";
+import { ConverterUrlImagemTheMovieDb } from "./JavaScript/converter-url-imagem-the-movie-db.js";
 
 /**
  * Armazena os dados obtidos dos filmes em lançamento ('now_playing').
@@ -15,24 +16,6 @@ let dadosDosFilmesEmDestaque;
  * Armazena os dados das avaliações dos filmes.
  */
 let avaliacoesDosFilmes = new Array();
-
-/**
- * Constrói página de erro para erros de XmlHttpRequest.
- */
-function construirPaginaErroXmlHttpRequest() {
-  let htmlString = "";
-  htmlString += "<main>";
-  htmlString += '<div style="text-align: center;">';
-  htmlString += "<h1>Erro ao construir página HTML</h1>";
-  htmlString += "<h2>Erro ao realizar 'XMLHttpRequest'</h2>";
-  htmlString += `<p style="color: red;">Status: ${this.status}</p>`;
-  htmlString += `<p style="color: red;">Status Text:${this.statusText}</p>`;
-  htmlString += `<p style="color: red;">Response Text:${this.responseText}</p>`;
-  htmlString += "</div>";
-  htmlString += "</main>";
-
-  document.body.innerHTML = htmlString;
-}
 
 /**
  * Obtém do 'The Movie DB' os dados dos filmes em lançamento.
@@ -98,50 +81,6 @@ class Avaliacao {
  */
 function compararObjetosClasseAvaliacaoPorData(a, b) {
   return a.data - b.data;
-}
-
-/**
- * Verifica se uma string é uma URL http válida.
- * @param {String} str String a ser verificada.
- * @return Valor booleano indicando se a String passada é uma URL http válida.
- */
-function stringIsValidHttpUrl(str) {
-  try {
-    let url = new URL(str);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Converte a URL de uma imagem do 'The Movie DB' para uma URL válida.
- * @param {String} url Url a ser convertida para uma url válida.
- * @returns Url válida para a imagem ou null.
- */
-function ConverterUrlImagemTheMovieDb(url) {
-  if (url != null) {
-    // Removendo '\'
-    if (url.startsWith("\\")) {
-      url = url.substring(1);
-    }
-
-    // Removendo '/'
-    if (url.startsWith("/")) {
-      url = url.substring(1);
-    }
-
-    // Adicionando 'https://image.tmdb.org/t/p/original/' a url
-    if ((!url.startsWith("http://")) && (!url.startsWith("https://"))) {
-      url = `https://image.tmdb.org/t/p/original/${url}`;
-    }
-
-    if (!stringIsValidHttpUrl(url)) {
-      url = null;
-    }
-  }
-
-  return url;
 }
 
 /**
