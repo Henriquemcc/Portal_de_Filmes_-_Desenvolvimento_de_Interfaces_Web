@@ -1,6 +1,6 @@
 import { API_KEY, LANGUAGE } from "./JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "./JavaScript/construir-pagina-erro-xml-http-request.js";
-import { ConverterUrlImagemTheMovieDb } from "./JavaScript/converter-url-imagem-the-movie-db.js";
+import { converterUrlImagemTheMovieDb } from "./JavaScript/converter-url-imagem-the-movie-db.js";
 
 /**
  * Armazena os dados obtidos dos filmes em lançamento ('now_playing').
@@ -127,7 +127,7 @@ function obterDadosDasAvaliacoes() {
               new Avaliacao(
                 dadosDeFilme.title,
                 reviewDoFilme.author,
-                ConverterUrlImagemTheMovieDb(
+                converterUrlImagemTheMovieDb(
                   reviewDoFilme.author_details.avatar_path,
                 ),
                 reviewDoFilme.content,
@@ -172,7 +172,7 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
 
         if (value.video) {}
         else {
-          let urlImagem = ConverterUrlImagemTheMovieDb(value.poster_path);
+          let urlImagem = converterUrlImagemTheMovieDb(value.poster_path);
           if (urlImagem != null) {
             htmlString += `<img class="movie-poster" src="${urlImagem}">`;
           }
@@ -204,7 +204,7 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
           '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
         htmlString += '<a href="#">';
 
-        let urlImagem = ConverterUrlImagemTheMovieDb(value.poster_path);
+        let urlImagem = converterUrlImagemTheMovieDb(value.poster_path);
 
         if (urlImagem != null) {
           htmlString += `<img src="${urlImagem}" alt="${value.name}">`;

@@ -1,6 +1,6 @@
 import { API_KEY, LANGUAGE } from "../JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "../JavaScript/construir-pagina-erro-xml-http-request.js";
-import { ConverterUrlImagemTheMovieDb } from "../JavaScript/converter-url-imagem-the-movie-db.js";
+import { converterUrlImagemTheMovieDb } from "../JavaScript/converter-url-imagem-the-movie-db.js";
 
 /**
  * Armazena os dados obtidos pela pesquisa.
@@ -60,7 +60,7 @@ function ConstruirPaginaComDadosDaPesquisa() {
       }
 
       // Exibindo a imagem
-      let urlImagem = ConverterUrlImagemTheMovieDb(
+      let urlImagem = converterUrlImagemTheMovieDb(
         resultadoPesquisa.poster_path,
       );
       if (urlImagem != null) {

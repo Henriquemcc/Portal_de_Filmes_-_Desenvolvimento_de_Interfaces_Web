@@ -5,7 +5,7 @@ import { stringIsValidHttpUrl } from "./string-is-valid-http-url.js";
  * @param {String} url Url a ser convertida para uma url válida.
  * @returns Url válida para a imagem ou null.
  */
-export function ConverterUrlImagemTheMovieDb(url) {
+export function converterUrlImagemTheMovieDb(url) {
   if (url != null) {
     // Removendo '\'
     if (url.startsWith("\\")) {
