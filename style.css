@@ -22,12 +22,12 @@ header a {
     text-align: center;
 }
 
-.menu_navegacao {
+#menu_navegacao {
     display: flex;
     align-content: center;
 }
 
-.menu_navegacao a {
+#menu_navegacao a {
     text-align: center;
     flex: 1 1 1;
 }
