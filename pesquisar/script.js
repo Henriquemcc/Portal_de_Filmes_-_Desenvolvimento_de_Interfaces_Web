@@ -50,6 +50,12 @@ function ObterQueryStringPesquisa() {
 }
 
 onload = () => {
+  // Obtendo a queryString 'search' da página atual
   let pesquisa = ObterQueryStringPesquisa();
+
+  // Adicionando a queryString 'search' á barra de pesquisa
+  document.querySelector("#search-bar").value = pesquisa;
+
+  // Obtendo os dados da pesquisa
   ObterDadosDaPesquisa(pesquisa);
 };
