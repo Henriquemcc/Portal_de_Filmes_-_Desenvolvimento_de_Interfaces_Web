@@ -274,19 +274,19 @@ function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
   for (let i = avaliacoesDosFilmes.length - 1; i > 0; i--) {
     let avaliacao = avaliacoesDosFilmes[i];
 
-    htmlString += '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
-    htmlString += '<div class="card">';
-    htmlString += '<div class="card-header">';
+    htmlString += '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">'; // div1: Inicio
+    htmlString += '<div class="card">'; // div2: Inicio
+    htmlString += '<div class="card-header">'; // div3: Inicio
     if (avaliacao.imagemAutor != null) {
       htmlString +=
         `<img src="${avaliacao.imagemAutor}" alt="${avaliacao.autor}">`;
     }
     htmlString += `<h2 class="card-title">${avaliacao.autor}</h2>`;
-    htmlString += "</div>";
+    htmlString += "</div>"; // div3: Fim
     htmlString +=
       `<p class="card-text"><b>${avaliacao.filme}:</b> ${avaliacao.avaliacao}</p>`;
-    htmlString += "</div>";
-    htmlString += "</div>";
+    htmlString += "</div>"; // div2: Fim
+    htmlString += "</div>"; // div1: Fim
   }
 
   document.querySelector(
