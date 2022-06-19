@@ -100,38 +100,43 @@ function ConstruirPaginaComDadosDaPesquisa() {
       htmlString += '<div class="row">';
       htmlString += '<div class="box-resultado">';
 
+      let tipoConteudo;
+      let titulo;
+      let tituloOriginal;
+      let descricao;
+      switch (resultadoPesquisa.media_type) {
+        case "movie":
+          tipoConteudo = "Filme";
+          titulo = resultadoPesquisa.title;
+          tituloOriginal = resultadoPesquisa.original_title;
+          descricao = resultadoPesquisa.overview;
+          break;
+        case "tv":
+          tipoConteudo = "Programa de TV";
+          titulo = resultadoPesquisa.name;
+          tituloOriginal = resultadoPesquisa.original_name;
+          descricao = resultadoPesquisa.overview;
+          break;
+      }
+
       // Exibindo a imagem
       let urlImagem = ConverterUrlImagemTheMovieDb(
         resultadoPesquisa.poster_path,
       );
       if (urlImagem != null) {
-        htmlString +=
-          `<img src="${urlImagem}" alt="${resultadoPesquisa.title}">`;
+        htmlString += `<img src="${urlImagem}" alt="${titulo}">`;
       }
 
       // Exibindo o tipo de conteúdo
-      let tipoConteudo;
-      switch (resultadoPesquisa.media_type) {
-        case "movie":
-          tipoConteudo = "Filme";
-          break;
-        case "tv":
-          tipoConteudo = "Programa de TV";
-          break;
-        default:
-          tipoConteudo = "";
-      }
       htmlString += `<span class="tipo-conteudo">${tipoConteudo}</span><br>`;
 
       // Exibindo o titulo
       htmlString +=
-        `<span class="titulo-original">${resultadoPesquisa.original_title}</span><br>`;
+        `<span class="titulo-original">${tituloOriginal}</span><br>`;
 
       // Exibindo o
-      htmlString +=
-        `<span class="titulo">${resultadoPesquisa.title}</span><br>`;
-      htmlString +=
-        `<span class="descricao">${resultadoPesquisa.overview}</span><br>`;
+      htmlString += `<span class="titulo">${titulo}</span><br>`;
+      htmlString += `<span class="descricao">${descricao}</span><br>`;
       htmlString += "</div>";
       htmlString += "</div>";
     },
