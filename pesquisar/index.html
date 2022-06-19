@@ -32,11 +32,13 @@
             <!-- Logo e Menu navegação -->
             <div class="col-12">
                 <!-- Logo - Inicio -->
-                <div class="menu_logo"> <a href="..">Portal Meus Filmes</a> </div>
+                <div id="menu_logo">
+                    <a href="..">Portal Meus Filmes</a>
+                </div>
                 <!-- Logo - Fim -->
 
                 <!-- Menu navegação - Inicio -->
-                <nav class="nav menu_navegacao">
+                <nav id="menu_navegacao" class="nav">
                     <a href="../#section_lancamentos" class="nav-link active">lançamentos</a>
                     <a href="../#section_destaque" class="nav-link active">em destaque</a>
                     <a href="../#section_ultimas_avaliacoes" class="nav-link active">avaliações</a>
@@ -50,8 +52,8 @@
             <div class="col-12">
                 <div id="menu_busca">
                     <form action="." method="get">
-                        <input type="text" name="search" id="search-movie" class="form-control" aria-label="Pesquisar">
-                        <button type="submit">
+                        <input type="text" name="search" id="search-bar" class="form-control" aria-label="Pesquisar">
+                        <button type="submit" id="btn-pesquisar">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
