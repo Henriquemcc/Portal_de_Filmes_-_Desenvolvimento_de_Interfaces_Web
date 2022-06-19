@@ -97,6 +97,7 @@ function ConstruirPaginaComDadosDaPesquisa() {
 
   dadosObtidosPelaPesquisa.results.forEach(
     (resultadoPesquisa) => {
+      htmlString += '<div class="row">';
       htmlString += '<div class="box-resultado">';
 
       // Exibindo a imagem
@@ -132,10 +133,11 @@ function ConstruirPaginaComDadosDaPesquisa() {
       htmlString +=
         `<span class="descricao">${resultadoPesquisa.overview}</span><br>`;
       htmlString += "</div>";
+      htmlString += "</div>";
     },
   );
 
-  document.querySelector("main").innerHTML = htmlString;
+  document.querySelector("#section_resultado_pesquisa").innerHTML = htmlString;
 }
 
 onload = () => {
