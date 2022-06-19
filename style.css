@@ -120,3 +120,11 @@ footer {
 #cards_filmes_destaque>div>div>a>img {
     margin: 10px;
 }
+
+/* Comentários das últimas avaliações */
+#cards_ultimas_avaliacoes>div>div>div>p {
+    font-size: 12pt;
+    text-overflow: ellipsis;
+    overflow: auto;
+    height: 400px;
+}
