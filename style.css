@@ -115,3 +115,8 @@ footer {
     color: #020202;
     text-align: center;
 }
+
+/* Imagens da parte 'Em destaque' */
+#cards_filmes_destaque>div>div>a>img {
+    margin: 10px;
+}
