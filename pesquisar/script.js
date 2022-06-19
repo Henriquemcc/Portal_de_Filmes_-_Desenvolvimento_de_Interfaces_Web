@@ -4,8 +4,7 @@ const LANGUAGE = "pt-BR";
 /**
  * Armazena os dados obtidos pela pesquisa.
  */
-let dadosObtidosPelaPesquisa = new Array();
-
+let dadosObtidosPelaPesquisa;
 /**
  * Constrói página de erro para erros de XmlHttpRequest.
  */
@@ -49,6 +48,96 @@ function ObterQueryStringPesquisa() {
   return url.searchParams.get("search");
 }
 
+/**
+ * Verifica se uma string é uma URL http válida.
+ * @param {String} str String a ser verificada.
+ * @return Valor booleano indicando se a String passada é uma URL http válida.
+ */
+function stringIsValidHttpUrl(str) {
+  try {
+    let url = new URL(str);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Converte a URL de uma imagem do 'The Movie DB' para uma URL válida.
+ * @param {String} url Url a ser convertida para uma url válida.
+ * @returns Url válida para a imagem ou null.
+ */
+function ConverterUrlImagemTheMovieDb(url) {
+  if (url != null) {
+    // Removendo '\'
+    if (url.startsWith("\\")) {
+      url = url.substring(1);
+    }
+
+    // Removendo '/'
+    if (url.startsWith("/")) {
+      url = url.substring(1);
+    }
+
+    // Adicionando 'https://image.tmdb.org/t/p/original/' a url
+    if ((!url.startsWith("http://")) && (!url.startsWith("https://"))) {
+      url = `https://image.tmdb.org/t/p/original/${url}`;
+    }
+
+    if (!stringIsValidHttpUrl(url)) {
+      url = null;
+    }
+  }
+
+  return url;
+}
+
+function ConstruirPaginaComDadosDaPesquisa() {
+  let htmlString = "";
+
+  dadosObtidosPelaPesquisa.results.forEach(
+    (resultadoPesquisa) => {
+      htmlString += '<div class="box-resultado">';
+
+      // Exibindo a imagem
+      let urlImagem = ConverterUrlImagemTheMovieDb(
+        resultadoPesquisa.poster_path,
+      );
+      if (urlImagem != null) {
+        htmlString +=
+          `<img src="${urlImagem}" alt="${resultadoPesquisa.title}">`;
+      }
+
+      // Exibindo o tipo de conteúdo
+      let tipoConteudo;
+      switch (resultadoPesquisa.media_type) {
+        case "movie":
+          tipoConteudo = "Filme";
+          break;
+        case "tv":
+          tipoConteudo = "Programa de TV";
+          break;
+        default:
+          tipoConteudo = "";
+      }
+      htmlString += `<span class="tipo-conteudo">${tipoConteudo}</span><br>`;
+
+      // Exibindo o titulo
+      htmlString +=
+        `<span class="titulo-original">${resultadoPesquisa.original_title}</span><br>`;
+
+      // Exibindo o
+      htmlString +=
+        `<span class="titulo">${resultadoPesquisa.title}</span><br>`;
+      htmlString +=
+        `<span class="descricao">${resultadoPesquisa.overview}</span><br>`;
+      htmlString += "</div>";
+    },
+  );
+
+  document.querySelector("main").innerHTML = htmlString;
+}
+
 onload = () => {
   // Obtendo a queryString 'search' da página atual
   let pesquisa = ObterQueryStringPesquisa();
@@ -58,4 +147,7 @@ onload = () => {
 
   // Obtendo os dados da pesquisa
   ObterDadosDaPesquisa(pesquisa);
+
+  // Construindo a página
+  ConstruirPaginaComDadosDaPesquisa();
 };
