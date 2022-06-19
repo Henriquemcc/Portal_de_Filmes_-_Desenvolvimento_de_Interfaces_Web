@@ -219,7 +219,8 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
         htmlString += `<h2>${value.title}</h2>`;
         htmlString += `<p>${value.overview}</p>`;
         htmlString += "</div>"; // div3: Fim
-        htmlString += '<div class="col-6">'; // div4: Inicio
+        htmlString +=
+          '<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">'; // div4: Inicio
 
         if (value.video) {}
         else {
@@ -249,7 +250,8 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
   if (dadosDosFilmesEmDestaque.results != null) {
     dadosDosFilmesEmDestaque.results.forEach(
       (value, index) => {
-        htmlString += '<div class="col-3">';
+        htmlString +=
+          '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
         htmlString += '<a href="#">';
         htmlString +=
           `<img src="https://image.tmdb.org/t/p/original/${value.poster_path}" alt="${value.name}">`;
