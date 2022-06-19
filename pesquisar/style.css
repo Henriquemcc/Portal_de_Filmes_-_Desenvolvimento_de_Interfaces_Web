@@ -1,0 +1,8 @@
+/* Cabeçalho da página*/
+header {
+    background: #c0c0c0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
