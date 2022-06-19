@@ -120,23 +120,25 @@ function stringIsValidHttpUrl(str) {
  * @returns Url válida para a imagem ou null.
  */
 function ConverterUrlImagemTheMovieDb(url) {
-  // Removendo '\'
-  if (url.startsWith("\\")) {
-    url = url.substring(1);
-  }
+  if (url != null) {
+    // Removendo '\'
+    if (url.startsWith("\\")) {
+      url = url.substring(1);
+    }
 
-  // Removendo '/'
-  if (url.startsWith("/")) {
-    url = url.substring(1);
-  }
+    // Removendo '/'
+    if (url.startsWith("/")) {
+      url = url.substring(1);
+    }
 
-  // Adicionando 'https://image.tmdb.org/t/p/original/' a url
-  if ((!url.startsWith("http://")) && (!url.startsWith("https://"))) {
-    url = `https://image.tmdb.org/t/p/original/${url}`;
-  }
+    // Adicionando 'https://image.tmdb.org/t/p/original/' a url
+    if ((!url.startsWith("http://")) && (!url.startsWith("https://"))) {
+      url = `https://image.tmdb.org/t/p/original/${url}`;
+    }
 
-  if (!stringIsValidHttpUrl(url)) {
-    url = null;
+    if (!stringIsValidHttpUrl(url)) {
+      url = null;
+    }
   }
 
   return url;
