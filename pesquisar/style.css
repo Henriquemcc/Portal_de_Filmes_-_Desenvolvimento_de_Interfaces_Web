@@ -25,6 +25,7 @@ footer {
     text-align: center;
 }
 
+/* Caixa dos resultados */
 .box-resultado {
     margin: 10px 10px;
     overflow: auto;
@@ -32,13 +33,19 @@ footer {
     clear: both;
 }
 
+/* Imagem dos resultados */
 .box-resultado img {
     float: left;
     margin-right: 10px;
     width: 180px;
 }
 
-.box-resultado .titulo,
-.box-resultado .titulo-original {
+/* Título dos resultados */
+.box-resultado .titulo {
     font-weight: 700;
+}
+
+/* Título original dos resultados */
+.box-resultado .titulo-original {
+    font-style: italic;
 }
