@@ -201,10 +201,16 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
   // Adicionando filmes
   if (dadosDosFilmesEmDestaque.results != null) {
     dadosDosFilmesEmDestaque.results.forEach(
-      (value, index) => {
+      (value) => {
+        let url;
+        if (value.media_type == "tv") {
+          url = `./programa-de-tv/?id=${value.id}`;
+        } else if (value.media_type == "movie") {
+          url = `./filme/?id=${value.id}`;
+        }
         htmlString +=
           '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">';
-        htmlString += '<a href="#">';
+        htmlString += `<a href="${url}">`;
 
         let urlImagem = converterUrlImagemTheMovieDb(value.poster_path);
 
