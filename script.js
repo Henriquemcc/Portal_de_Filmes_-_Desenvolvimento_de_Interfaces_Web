@@ -184,7 +184,7 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
           let urlImagem = converterUrlImagemTheMovieDb(value.poster_path);
           if (urlImagem != null) {
             htmlStringConteudoCarrousel +=
-              `<img class="movie-poster" src="${urlImagem}">`;
+              `<img class="movie-poster" src="${urlImagem}" alt="${value.title}">`;
           }
         }
         htmlStringConteudoCarrousel += "</div>"; // div4: Fim
