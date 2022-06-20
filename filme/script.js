@@ -50,6 +50,9 @@ function construirPaginaComDadosDoFilme() {
   if (dadosDoFilme.title != null) {
     htmlString += `<h1 class="titulo"><strong>${dadosDoFilme.title}</strong> `;
 
+    // Adicionando título á página
+    document.querySelector("title").innerText = dadosDoFilme.title;
+
     // Ano
     if (dadosDoFilme.release_date != null) {
       let dataEstreia = new Date(dadosDoFilme.release_date);
