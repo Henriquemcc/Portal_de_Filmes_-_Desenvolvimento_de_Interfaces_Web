@@ -1,0 +1,48 @@
+/* Cabeçalho da página*/
+header {
+    background: #c0c0c0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #020202;
+    text-align: center;
+}
+
+#menu_navegacao {
+    display: flex;
+    align-content: center;
+}
+
+#menu_navegacao a {
+    text-align: center;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+#menu_busca {
+    display: flex;
+    align-content: center;
+    text-align: center;
+}
+
+/* Barra de pesquisa */
+#search-bar {
+    display: inline;
+}
+
+/* Form do botão de pesquisa e da barra de pesquisa */
+#menu_busca>form {
+    display: flex;
+    flex: 1;
+}
+
+/* Rodapé da página */
+footer {
+    background: #c0c0c0;
+    color: #020202;
+    text-align: center;
+}
