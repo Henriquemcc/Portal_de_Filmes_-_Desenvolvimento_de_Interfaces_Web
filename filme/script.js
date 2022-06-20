@@ -46,10 +46,17 @@ function construirPaginaComDadosDoFilme() {
 
   htmlString += '<div class="row">';
 
-  // Título
-
+  // Título e ano
   if (dadosDoFilme.title != null) {
-    htmlString += `<h1 class="titulo">${dadosDoFilme.title}</h1>`;
+    htmlString += `<h1 class="titulo"><strong>${dadosDoFilme.title}</strong> `;
+
+    // Ano
+    if (dadosDoFilme.release_date != null) {
+      let dataEstreia = new Date(dadosDoFilme.release_date);
+      htmlString += `(${dataEstreia.getFullYear()})`;
+    }
+
+    htmlString += "</h1>";
   }
 
   // Imagem
