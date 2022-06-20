@@ -29,7 +29,8 @@ header a {
 
 #menu_navegacao a {
     text-align: center;
-    flex: 1 1 1;
+    flex-shrink: 1;
+    flex-grow: 1;
 }
 
 #menu_busca {
