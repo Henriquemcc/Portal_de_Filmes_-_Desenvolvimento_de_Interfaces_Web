@@ -1,4 +1,4 @@
-import { API_KEY, LANGUAGE } from "../JavaScript/constantes.js";
+import { MOVIE_DB_API_KEY, LANGUAGE } from "../JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "../JavaScript/construir-pagina-erro-xml-http-request.js";
 import { converterUrlImagemTheMovieDb } from "../JavaScript/converter-url-imagem-the-movie-db.js";
 
@@ -15,7 +15,7 @@ function ObterDadosDaPesquisa(query) {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
-    `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=${LANGUAGE}&query=${query}`,
+    `https://api.themoviedb.org/3/search/multi?api_key=${MOVIE_DB_API_KEY}&language=${LANGUAGE}&query=${query}`,
     false,
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;

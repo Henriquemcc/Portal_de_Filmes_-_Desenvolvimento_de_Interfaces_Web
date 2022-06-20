@@ -1,4 +1,4 @@
-import { API_KEY, LANGUAGE } from "../JavaScript/constantes.js";
+import { MOVIE_DB_API_KEY, LANGUAGE } from "../JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "../JavaScript/construir-pagina-erro-xml-http-request.js";
 import { converterUrlImagemTheMovieDb } from "../JavaScript/converter-url-imagem-the-movie-db.js";
 import { converterNumeroParaStringEmPortuguesBrasil } from "../JavaScript/converter-numero-para-string-portugues-brasil.js";
@@ -30,7 +30,7 @@ function ObterDadosDoProgramaDeTv(id) {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=${LANGUAGE}`,
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${MOVIE_DB_API_KEY}&language=${LANGUAGE}`,
     false,
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;

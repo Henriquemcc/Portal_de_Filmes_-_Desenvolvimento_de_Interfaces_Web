@@ -1,4 +1,4 @@
-import { API_KEY, LANGUAGE } from "./JavaScript/constantes.js";
+import { MOVIE_DB_API_KEY, LANGUAGE } from "./JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "./JavaScript/construir-pagina-erro-xml-http-request.js";
 import { converterUrlImagemTheMovieDb } from "./JavaScript/converter-url-imagem-the-movie-db.js";
 
@@ -24,7 +24,7 @@ function obterDadosDosFilmesEmLancamento() {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}`,
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${MOVIE_DB_API_KEY}&language=${LANGUAGE}`,
     false,
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
@@ -39,7 +39,7 @@ function obterDadosDosFilmesEmDestaque() {
   let xmlHttpRequestObject = new XMLHttpRequest();
   xmlHttpRequestObject.open(
     "GET",
-    `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=${LANGUAGE}`,
+    `https://api.themoviedb.org/3/trending/all/week?api_key=${MOVIE_DB_API_KEY}&language=${LANGUAGE}`,
     false,
   );
   xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
@@ -112,7 +112,7 @@ function obterDadosDasAvaliacoes() {
         let xmlHttpRequestObject = new XMLHttpRequest();
         xmlHttpRequestObject.open(
           "GET",
-          `https://api.themoviedb.org/3/movie/${dadosDeFilme.id}/reviews?api_key=${API_KEY}&language=${LANGUAGE}`,
+          `https://api.themoviedb.org/3/movie/${dadosDeFilme.id}/reviews?api_key=${MOVIE_DB_API_KEY}&language=${LANGUAGE}`,
           false,
         );
         xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
