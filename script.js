@@ -351,6 +351,11 @@ function construidPedacoDaPaginaSobreEntrevistasEMakingOf() {
                 if (video != null && video.snippet != null && video.snippet.resourceId != null && video.snippet.resourceId.videoId != null) {
                     htmlString += '<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">';
                     htmlString += '<div class="card">'; // div2: Inicio
+                    htmlString += '<div class="card-header">'; // div3: Inicio
+                    if (video.snippet.title != null) {
+                        htmlString += `<h2 class="card-title">${video.snippet.title}</h2>`;
+                    }
+                    htmlString += "</div>"; // div3: Fim
                     htmlString += `<iframe class="video-frame" src="https://www.youtube.com/embed/${video.snippet.resourceId.videoId}" title="YouTube video player" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                     htmlString += "</div>"; // div2: Fim
                     htmlString += "</div>"; // div1: Fim
@@ -371,6 +376,8 @@ onload = function () {
     obterDadosDosFilmesEmLancamento();
     obterDadosDosFilmesEmDestaque();
     obterDadosDasAvaliacoes();
+
+    // Obtendo dados da API do Youtube
     obterDadosDasEntrevistasEMakingOf();
 
     // Construindo pedaços da página HTML
