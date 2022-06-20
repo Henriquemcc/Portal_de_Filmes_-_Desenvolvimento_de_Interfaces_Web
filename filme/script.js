@@ -208,6 +208,4 @@ onload = () => {
 
   // Construindo a página com os dados do filme
   construirPaginaComDadosDoFilme();
-
-  window.dadosDoFilme = dadosDoFilme;
 };
