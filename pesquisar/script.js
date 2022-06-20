@@ -77,6 +77,16 @@ function ConstruirPaginaComDadosDaPesquisa() {
       // Exibindo o
       htmlString += `<span class="titulo">${titulo}</span><br>`;
       htmlString += `<span class="descricao">${descricao}</span><br>`;
+
+      let url;
+      if (resultadoPesquisa.media_type == "tv") {
+        url = `../programa-de-tv/?id=${resultadoPesquisa.id}`;
+      } else if (resultadoPesquisa.media_type == "movie") {
+        url = `../filme/?id=${resultadoPesquisa.id}`;
+      }
+
+      htmlString +=
+        `<a href="${url}"><span class="mais-informacoes">Mais informações</a>`;
       htmlString += "</div>";
       htmlString += "</div>";
     },
