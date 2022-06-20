@@ -164,7 +164,7 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
     dadosDosFilmesEmLancamento.results.forEach(
       (value, index) => {
         // Adicionando conteúdo ao carrousel
-        if (index == 0) {
+        if (index === 0) {
           htmlStringConteudoCarrousel += `<div class="carousel-item active">`; // div1: Inicio
         } else {
           htmlStringConteudoCarrousel += `<div class="carousel-item">`; // div1: Inicio
@@ -192,7 +192,7 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
         htmlStringConteudoCarrousel += "</div>"; // div1: Fim
 
         // Adicionando botões ao carrousel
-        if (index == 0) {
+        if (index === 0) {
           htmlStringBotoesCarrousel +=
             `<button type="button" data-bs-target="#carouselLancamentos" data-bs-slide-to="${index}" class="active" aria-current="true" aria-label="Lançamento ${
               index + 1
@@ -230,9 +230,9 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
     dadosDosFilmesEmDestaque.results.forEach(
       (value) => {
         let url;
-        if (value.media_type == "tv") {
+        if (value.media_type === "tv") {
           url = `./programa-de-tv/?id=${value.id}`;
-        } else if (value.media_type == "movie") {
+        } else if (value.media_type === "movie") {
           url = `./filme/?id=${value.id}`;
         }
         htmlString +=

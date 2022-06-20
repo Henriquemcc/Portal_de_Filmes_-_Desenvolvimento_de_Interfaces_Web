@@ -62,7 +62,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
       let dataInicio = new Date(dadosDoProgramaDeTv.first_air_date);
       let dataFim = new Date(dadosDoProgramaDeTv.last_air_date);
 
-      if (dataInicio.getFullYear() == dataFim.getFullYear()) {
+      if (dataInicio.getFullYear() === dataFim.getFullYear()) {
         htmlString += `(${dataInicio.getFullYear()})`;
       } else {
         htmlString += `(${dataInicio.getFullYear()}-${dataFim.getFullYear()})`;
@@ -134,7 +134,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
     let linguasFaladasString = "";
     for (let i = 0; i < linguasFaladasArray.length; i++) {
       linguasFaladasString += linguasFaladasArray[i];
-      if (i == linguasFaladasArray.length - 2) {
+      if (i === linguasFaladasArray.length - 2) {
         linguasFaladasString += " e ";
       } else if (i < linguasFaladasArray.length - 1) {
         linguasFaladasString += ", ";
@@ -169,7 +169,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
     let empresasProdutorasString = "";
     for (let i = 0; i < empresasProdutorasArray.length; i++) {
       empresasProdutorasString += empresasProdutorasArray[i];
-      if (i == empresasProdutorasArray.length - 2) {
+      if (i === empresasProdutorasArray.length - 2) {
         empresasProdutorasString += " e ";
       } else if (i < empresasProdutorasArray.length - 1) {
         empresasProdutorasString += ", ";
@@ -195,7 +195,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
     let paisProducaoString = "";
     for (let i = 0; i < paisProducaoArray.length; i++) {
       paisProducaoString += paisProducaoArray[i];
-      if (i == paisProducaoArray.length - 2) {
+      if (i === paisProducaoArray.length - 2) {
         paisProducaoString += " e ";
       } else if (i < paisProducaoArray.length - 1) {
         paisProducaoString += ", ";

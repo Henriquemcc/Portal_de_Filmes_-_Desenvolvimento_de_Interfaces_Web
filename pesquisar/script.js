@@ -79,9 +79,9 @@ function ConstruirPaginaComDadosDaPesquisa() {
       htmlString += `<span class="descricao">${descricao}</span><br>`;
 
       let url;
-      if (resultadoPesquisa.media_type == "tv") {
+      if (resultadoPesquisa.media_type === "tv") {
         url = `../programa-de-tv/?id=${resultadoPesquisa.id}`;
-      } else if (resultadoPesquisa.media_type == "movie") {
+      } else if (resultadoPesquisa.media_type === "movie") {
         url = `../filme/?id=${resultadoPesquisa.id}`;
       }
 
