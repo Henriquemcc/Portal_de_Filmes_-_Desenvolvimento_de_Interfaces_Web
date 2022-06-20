@@ -139,5 +139,21 @@ footer {
     font-size: 12pt;
     text-overflow: ellipsis;
     overflow: auto;
-    height: 400px;
+    height: 300px;
+}
+
+/* Iframe dos vídeos das entrevistas e making of*/
+#section_entrevistas_e_making_of > div.row > div > div > iframe {
+    width: 100%;
+}
+
+/* Card de cada entrevista e making of */
+#section_entrevistas_e_making_of > div.row > div {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Título de cada entrevista e making of */
+#section_entrevistas_e_making_of > div.row > div > div > div > h2 {
+    font-size: 12pt;
 }
