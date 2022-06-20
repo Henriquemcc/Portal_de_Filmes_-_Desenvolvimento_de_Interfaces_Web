@@ -208,7 +208,7 @@ function construirPaginaComDadosDoFilme() {
     }
 
     htmlString +=
-      '<span class="paises-producao chave">Paíse(s) de produção:</span>';
+      '<span class="paises-producao chave">País(es) de produção:</span>';
     htmlString +=
       `<span class="paises-producao">${paisProducaoString}.</span><br>`;
   }
