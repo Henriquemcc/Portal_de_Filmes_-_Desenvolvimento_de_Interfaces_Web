@@ -156,44 +156,64 @@ function obterDadosDasAvaliacoes() {
  */
 function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
   // Construindo HTMLstring
-  let htmlString = "";
+  let htmlStringConteudoCarrousel = "";
+  let htmlStringBotoesCarrousel = "";
 
   // Adicionando filmes
   if (dadosDosFilmesEmLancamento.results != null) {
     dadosDosFilmesEmLancamento.results.forEach(
       (value, index) => {
+        // Adicionando conteúdo ao carrousel
         if (index == 0) {
-          htmlString += `<div class="carousel-item active">`; // div1: Inicio
+          htmlStringConteudoCarrousel += `<div class="carousel-item active">`; // div1: Inicio
         } else {
-          htmlString += `<div class="carousel-item">`; // div1: Inicio
+          htmlStringConteudoCarrousel += `<div class="carousel-item">`; // div1: Inicio
         }
-        htmlString += '<div class="row">'; // div2: Inicio
-        htmlString += '<div class="col-6">'; // div3: Inicio
-        htmlString += `<h2>${value.title}</h2>`;
-        htmlString += `<p>${value.overview}</p>`;
-        htmlString +=
+        htmlStringConteudoCarrousel += '<div class="row">'; // div2: Inicio
+        htmlStringConteudoCarrousel += '<div class="col-6">'; // div3: Inicio
+        htmlStringConteudoCarrousel += `<h2>${value.title}</h2>`;
+        htmlStringConteudoCarrousel += `<p>${value.overview}</p>`;
+        htmlStringConteudoCarrousel +=
           `<a href="./filme/?id=${value.id}"><p>Mais informações</p></a>`;
-        htmlString += "</div>"; // div3: Fim
-        htmlString +=
+        htmlStringConteudoCarrousel += "</div>"; // div3: Fim
+        htmlStringConteudoCarrousel +=
           '<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">'; // div4: Inicio
 
         if (value.video) {}
         else {
           let urlImagem = converterUrlImagemTheMovieDb(value.poster_path);
           if (urlImagem != null) {
-            htmlString += `<img class="movie-poster" src="${urlImagem}">`;
+            htmlStringConteudoCarrousel +=
+              `<img class="movie-poster" src="${urlImagem}">`;
           }
         }
-        htmlString += "</div>"; // div4: Fim
-        htmlString += "</div>"; // div2: Fim
-        htmlString += "</div>"; // div1: Fim
+        htmlStringConteudoCarrousel += "</div>"; // div4: Fim
+        htmlStringConteudoCarrousel += "</div>"; // div2: Fim
+        htmlStringConteudoCarrousel += "</div>"; // div1: Fim
+
+        // Adicionando botões ao carrousel
+        if (index == 0) {
+          htmlStringBotoesCarrousel +=
+            `<button type="button" data-bs-target="#carouselLancamentos" data-bs-slide-to="${index}" class="active" aria-current="true" aria-label="Lançamento ${
+              index + 1
+            }"></button>`;
+        } else {
+          htmlStringBotoesCarrousel +=
+            `<button type="button" data-bs-target="#carouselLancamentos" data-bs-slide-to="${index}" aria-label="Lançamento ${
+              index + 1
+            }"></button>`;
+        }
       },
     );
   }
 
   document.querySelector(
     "main #section_lancamentos #carouselLancamentos .carousel-inner",
-  ).innerHTML = htmlString;
+  ).innerHTML = htmlStringConteudoCarrousel;
+
+  document.querySelector(
+    "#carouselLancamentos > div.row.botoes_carousel > div > div",
+  ).innerHTML = htmlStringBotoesCarrousel;
 }
 
 /**
