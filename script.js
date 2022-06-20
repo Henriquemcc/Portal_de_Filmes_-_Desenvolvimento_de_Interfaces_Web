@@ -15,7 +15,7 @@ let dadosDosFilmesEmDestaque;
 /**
  * Armazena os dados das avaliações dos filmes.
  */
-let avaliacoesDosFilmes = new Array();
+let avaliacoesDosFilmes = [];
 
 /**
  * Obtém do 'The Movie DB' os dados dos filmes em lançamento.
@@ -87,7 +87,7 @@ function compararObjetosClasseAvaliacaoPorData(a, b) {
  * Obtém do 'The Movie DB' os dados das avaliações dos filmes em lançamento e em destaque.
  */
 function obterDadosDasAvaliacoes() {
-  let dadosDosFilmes = new Array();
+  let dadosDosFilmes = [];
 
   if (
     dadosDosFilmesEmDestaque != null && dadosDosFilmesEmDestaque.results != null

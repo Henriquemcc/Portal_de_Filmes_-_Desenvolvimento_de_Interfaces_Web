@@ -116,7 +116,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
 
   // Línguas faladas
   if (dadosDoProgramaDeTv.spoken_languages != null) {
-    let linguasFaladasArray = new Array();
+    let linguasFaladasArray = [];
     dadosDoProgramaDeTv.spoken_languages.forEach(
       (spoken_language) => {
         linguasFaladasArray.push(
@@ -155,7 +155,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
 
   // Empresas produtoras
   if (dadosDoProgramaDeTv.production_companies != null) {
-    let empresasProdutorasArray = new Array();
+    let empresasProdutorasArray = [];
 
     dadosDoProgramaDeTv.production_companies.forEach(
       (production_company) => {
@@ -179,7 +179,7 @@ function construirPaginaComDadosDoProgramaDeTv() {
 
   // País de produção
   if (dadosDoProgramaDeTv.production_countries != null) {
-    let paisProducaoArray = new Array();
+    let paisProducaoArray = [];
 
     dadosDoProgramaDeTv.production_countries.forEach(
       (production_country) => {

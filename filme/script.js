@@ -127,7 +127,7 @@ function construirPaginaComDadosDoFilme() {
 
   // Línguas faladas
   if (dadosDoFilme.spoken_languages != null) {
-    let linguasFaladasArray = new Array();
+    let linguasFaladasArray = [];
     dadosDoFilme.spoken_languages.forEach(
       (spoken_language) => {
         linguasFaladasArray.push(
@@ -166,7 +166,7 @@ function construirPaginaComDadosDoFilme() {
 
   // Empresas produtoras
   if (dadosDoFilme.production_companies != null) {
-    let empresasProdutorasArray = new Array();
+    let empresasProdutorasArray = [];
 
     dadosDoFilme.production_companies.forEach(
       (production_company) => {
@@ -190,7 +190,7 @@ function construirPaginaComDadosDoFilme() {
 
   // País de produção
   if (dadosDoFilme.production_countries != null) {
-    let paisProducaoArray = new Array();
+    let paisProducaoArray = [];
 
     dadosDoFilme.production_countries.forEach(
       (production_country) => {
