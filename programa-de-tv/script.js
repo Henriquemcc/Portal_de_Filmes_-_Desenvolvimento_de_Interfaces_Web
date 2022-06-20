@@ -51,6 +51,9 @@ function construirPaginaComDadosDoProgramaDeTv() {
     htmlString +=
       `<h1 class="titulo"><strong>${dadosDoProgramaDeTv.name}</strong> `;
 
+    // Adicionando título á página
+    document.querySelector("title").innerText = dadosDoProgramaDeTv.name;
+
     // Ano
     if (
       dadosDoProgramaDeTv.first_air_date != null &&
