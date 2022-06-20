@@ -121,21 +121,26 @@ function obterDadosDasAvaliacoes() {
           xmlHttpRequestObject.responseText,
         );
 
-        dadosDosReviewsDoFilme.results.forEach(
-          (reviewDoFilme) => {
-            avaliacoesDosFilmes.push(
-              new Avaliacao(
-                dadosDeFilme.title,
-                reviewDoFilme.author,
-                converterUrlImagemTheMovieDb(
-                  reviewDoFilme.author_details.avatar_path,
+        if (
+          dadosDosReviewsDoFilme != null &&
+          dadosDosReviewsDoFilme.results != null
+        ) {
+          dadosDosReviewsDoFilme.results.forEach(
+            (reviewDoFilme) => {
+              avaliacoesDosFilmes.push(
+                new Avaliacao(
+                  dadosDeFilme.title,
+                  reviewDoFilme.author,
+                  converterUrlImagemTheMovieDb(
+                    reviewDoFilme.author_details.avatar_path,
+                  ),
+                  reviewDoFilme.content,
+                  reviewDoFilme.created_at,
                 ),
-                reviewDoFilme.content,
-                reviewDoFilme.created_at,
-              ),
-            );
-          },
-        );
+              );
+            },
+          );
+        }
       } catch (e) {
         console.log(e);
       }
@@ -199,7 +204,9 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
   let htmlString = "";
 
   // Adicionando filmes
-  if (dadosDosFilmesEmDestaque.results != null) {
+  if (
+    dadosDosFilmesEmDestaque != null && dadosDosFilmesEmDestaque.results != null
+  ) {
     dadosDosFilmesEmDestaque.results.forEach(
       (value) => {
         let url;
