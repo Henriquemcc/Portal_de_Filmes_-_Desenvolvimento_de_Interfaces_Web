@@ -24,3 +24,40 @@ footer {
     color: #020202;
     text-align: center;
 }
+
+/* Caixa do programa de tv*/
+#section_dados_programa_de_tv>div {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+    display: block;
+    margin: 10px 10px;
+    overflow: auto;
+    color: #fff;
+    clear: both;
+    background-color: #000;
+}
+
+/* Imagem do programa de tv */
+#section_dados_programa_de_tv>div>img {
+    float: left;
+    width: 400px;
+    border-radius: 40px;
+}
+
+/* Título do programa de tv */
+#section_dados_programa_de_tv>div>h1 {
+    font-weight: 700;
+}
+
+/* Valor do título original do programa de tv */
+#section_dados_programa_de_tv>div>span.titulo-original.valor {
+    font-style: italic;
+}
+
+/* Descrição dos atributos */
+#section_dados_programa_de_tv .row .chave {
+    font-weight: bold;
+}
