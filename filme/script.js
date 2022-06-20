@@ -67,8 +67,9 @@ function construirPaginaComDadosDoFilme() {
 
   // Título Original
   if (dadosDoFilme.original_title != null) {
+    htmlString += '<span class="titulo-original chave">Título Original:</span>';
     htmlString +=
-      `<span class="titulo-original">Título Original: ${dadosDoFilme.original_title}.</span><br>`;
+      `<span class="titulo-original valor">${dadosDoFilme.original_title}.</span><br>`;
   }
 
   // Adulto
@@ -79,12 +80,15 @@ function construirPaginaComDadosDoFilme() {
     } else {
       adultoStr = "Não";
     }
-    htmlString += `<span class="adulto">Adulto: ${adultoStr}.</span>`;
+    htmlString += '<span class="adulto chave">Adulto: </span>';
+    htmlString += `<span class="adulto valor">${adultoStr}.</span><br>`;
   }
 
   // Descrição
   if (dadosDoFilme.overview != null) {
-    htmlString += `<span class="descricao">${dadosDoFilme.overview}</span><br>`;
+    htmlString += '<span class="descricao chave">Sinopse: </span>';
+    htmlString +=
+      `<span class="descricao valor">${dadosDoFilme.overview}</span><br>`;
   }
 
   // Orçamento
@@ -92,8 +96,8 @@ function construirPaginaComDadosDoFilme() {
     let orcamentoStr = converterNumeroParaStringEmPortuguesBrasil(
       dadosDoFilme.budget,
     );
-    htmlString +=
-      `<span class="orcamento">Orçamento: $${orcamentoStr}.</span><br>`;
+    htmlString += '<span class="orcamento chave">Orçamento:</span>';
+    htmlString += `<span class="orcamento valor">$${orcamentoStr}.</span><br>`;
   }
 
   // Receita
@@ -101,7 +105,8 @@ function construirPaginaComDadosDoFilme() {
     let receitaStr = converterNumeroParaStringEmPortuguesBrasil(
       dadosDoFilme.revenue,
     );
-    htmlString += `<span class="receita">Receita: $${receitaStr}.</span><br>`;
+    htmlString += '<span class="receita chave">Receita:</span>';
+    htmlString += `<span class="receita valor">$${receitaStr}.</span><br>`;
   }
 
   // Língua original
@@ -112,8 +117,9 @@ function construirPaginaComDadosDoFilme() {
       ),
     );
 
+    htmlString += '<span class="lingua-original chave">Língua Original:</span>';
     htmlString +=
-      `<span class="lingua-original">Língua Original: ${linguaOriginal}.</span><br>`;
+      `<span class="lingua-original valor">${linguaOriginal}.</span><br>`;
   }
 
   // Línguas faladas
@@ -140,7 +146,9 @@ function construirPaginaComDadosDoFilme() {
       }
     }
     htmlString +=
-      `<span class="liguas-faladas">Lígua(s) Falada(s): ${linguasFaladasString}.</span><br>`;
+      '<span class="liguas-faladas chave">Lígua(s) Falada(s):</span>';
+    htmlString +=
+      `<span class="liguas-faladas valor">${linguasFaladasString}.</span><br>`;
   }
 
   // Populariade
@@ -148,8 +156,9 @@ function construirPaginaComDadosDoFilme() {
     let popularidade = converterNumeroParaStringEmPortuguesBrasil(
       dadosDoFilme.popularity,
     );
+    htmlString += '<span class="popularidade chave">Popularidade:</span>';
     htmlString +=
-      `<span class="popularidade">Popularidade: ${popularidade}.</span><br>`;
+      `<span class="popularidade valor">${popularidade}.</span><br>`;
   }
 
   // Empresas produtoras
@@ -171,8 +180,9 @@ function construirPaginaComDadosDoFilme() {
         empresasProdutorasString += ", ";
       }
     }
+    htmlString += '<span class="empresas-producao chave">Produtora(s):</span>';
     htmlString +=
-      `<span class="empresas-producao">Produtora(s): ${empresasProdutorasString}.</span><br>`;
+      `<span class="empresas-producao valor">${empresasProdutorasString}.</span><br>`;
   }
 
   // País de produção
@@ -198,7 +208,9 @@ function construirPaginaComDadosDoFilme() {
     }
 
     htmlString +=
-      `<span class="paises-producao">Paíse(s) de produção: ${paisProducaoString}.</span><br>`;
+      '<span class="paises-producao chave">Paíse(s) de produção:</span>';
+    htmlString +=
+      `<span class="paises-producao">${paisProducaoString}.</span><br>`;
   }
 
   htmlString += "</div>";
