@@ -166,6 +166,8 @@ function construirPedacoDaPaginaSobreFilmesEmLancamentos() {
         htmlString += '<div class="col-6">'; // div3: Inicio
         htmlString += `<h2>${value.title}</h2>`;
         htmlString += `<p>${value.overview}</p>`;
+        htmlString +=
+          `<a href="./filme/?id=${value.id}"><p>Mais informações</p></a>`;
         htmlString += "</div>"; // div3: Fim
         htmlString +=
           '<div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">'; // div4: Inicio
