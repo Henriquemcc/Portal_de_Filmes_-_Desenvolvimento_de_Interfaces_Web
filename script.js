@@ -1,6 +1,8 @@
-import { MOVIE_DB_API_KEY, LANGUAGE } from "./JavaScript/constantes.js";
+import { MOVIE_DB_API_KEY, LANGUAGE, YOUTUBE_DATA_API_KEY } from "./JavaScript/constantes.js";
 import { construirPaginaErroXmlHttpRequest } from "./JavaScript/construir-pagina-erro-xml-http-request.js";
 import { converterUrlImagemTheMovieDb } from "./JavaScript/converter-url-imagem-the-movie-db.js";
+
+const playlistIdEntrevistasEMakingOf = "PLRDnnvx-4xZ0-OSqGnpTOq-4IlPxPrmLC";
 
 /**
  * Armazena os dados obtidos dos filmes em lançamento ('now_playing').
@@ -16,6 +18,11 @@ let dadosDosFilmesEmDestaque;
  * Armazena os dados das avaliações dos filmes.
  */
 let avaliacoesDosFilmes = [];
+
+/**
+ * Armazena os dados obtidos da playlist entrevistas e making of.
+ */
+let dadosDaPlayListEntrevistaEMakingOf;
 
 /**
  * Obtém do 'The Movie DB' os dados dos filmes em lançamento.
@@ -255,6 +262,9 @@ function construirPedacoDaPaginaSobreFilmesEmDestaque() {
     .innerHTML = htmlString;
 }
 
+/**
+ * Constrói a página sobre as últimas avaliações.
+ */
 function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
   // Construindo HTMLString
   let htmlString = "";
@@ -284,14 +294,57 @@ function construirPedacoDaPaginaSobreUltimasAvaliacoes() {
   ).innerHTML = htmlString;
 }
 
+/**
+ * Obtém da API do 'Youtube' os vídeos das entrevistas e making of a playlist do IMDB.
+ */
+function obterDadosDasEntrevistasEMakingOf() {
+
+    let xmlHttpRequestObject = new XMLHttpRequest();
+    xmlHttpRequestObject.open(
+        "GET",
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistIdEntrevistasEMakingOf}&key=${YOUTUBE_DATA_API_KEY}`,
+        false
+    );
+    xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
+    xmlHttpRequestObject.send();
+    dadosDaPlayListEntrevistaEMakingOf = JSON.parse(xmlHttpRequestObject.responseText);
+}
+
+/**
+ * Constrói a página de entrevistas e making of.
+ */
+function construidPedacoDaPaginaSobreEntrevistasEMakingOf() {
+
+    let htmlString = "";
+
+    if (dadosDaPlayListEntrevistaEMakingOf != null && dadosDaPlayListEntrevistaEMakingOf.items != null) {
+        dadosDaPlayListEntrevistaEMakingOf.items.forEach(
+            (video) => {
+                if (video != null && video.snippet != null && video.snippet.resourceId != null && video.snippet.resourceId.videoId != null) {
+                    htmlString += '<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">';
+                    htmlString += '<div class="card">'; // div2: Inicio
+                    htmlString += `<iframe class="video-frame" src="https://www.youtube.com/embed/${video.snippet.resourceId.videoId}" title="YouTube video player" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                    htmlString += "</div>"; // div2: Fim
+                    htmlString += "</div>"; // div1: Fim
+                }
+            }
+        )
+    }
+    ``
+
+    document.querySelector("#section_entrevistas_e_making_of > div.row").innerHTML = htmlString;
+}
+
 onload = function () {
   // Obtendo dados do 'The Movie DB'
   obterDadosDosFilmesEmLancamento();
   obterDadosDosFilmesEmDestaque();
   obterDadosDasAvaliacoes();
+  obterDadosDasEntrevistasEMakingOf();
 
   // Construindo pedaços da página HTML
   construirPedacoDaPaginaSobreFilmesEmLancamentos();
   construirPedacoDaPaginaSobreFilmesEmDestaque();
   construirPedacoDaPaginaSobreUltimasAvaliacoes();
+  construidPedacoDaPaginaSobreEntrevistasEMakingOf();
 };
