@@ -3,7 +3,7 @@
  * @param {String} codigo Código ISO 639-1.
  * @returns Valor em Português do código.
  */
-function converterCodigoIso6391ParaPortuguesBrasil(codigo) {
+export function converterCodigoIso6391ParaPortuguesBrasil(codigo) {
   let nomeLinguasEmPortugues = new Intl.DisplayNames(["pt-BR"], {
     type: "language",
   });
