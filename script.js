@@ -1,5 +1,4 @@
 import {LANGUAGE, MOVIE_DB_API_KEY} from "./JavaScript/constantes.js";
-import {construirPaginaErroXmlHttpRequest} from "./JavaScript/construir-pagina-erro-xml-http-request.js";
 import {converterUrlImagemTheMovieDb} from "./JavaScript/converter-url-imagem-the-movie-db.js";
 
 /**
@@ -24,7 +23,6 @@ function obterDadosDosFilmesEmLancamento(api_key, language)
 	}
 	catch (e)
 	{
-		construirPaginaErroXmlHttpRequest({xmlHttpRequestObject: xmlHttpRequestObject});
 		console.log(e);
 	}
 
@@ -53,7 +51,6 @@ function obterDadosDosFilmesEmDestaque(api_key, language)
 	}
 	catch (e)
 	{
-		construirPaginaErroXmlHttpRequest({xmlHttpRequestObject: xmlHttpRequestObject});
 		console.log(e);
 	}
 
@@ -127,7 +124,6 @@ function obterDadosDasAvaliacoes(dadosDosFilmes, api_key, language)
 				// Baixando review do filme
 				let xmlHttpRequestObject = new XMLHttpRequest();
 				xmlHttpRequestObject.open("GET", url, false);
-				xmlHttpRequestObject.onerror = construirPaginaErroXmlHttpRequest;
 				xmlHttpRequestObject.send();
 				let dadosDosReviewsDoFilme = JSON.parse(xmlHttpRequestObject.responseText);
 

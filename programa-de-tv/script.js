@@ -1,5 +1,4 @@
 import {LANGUAGE, MOVIE_DB_API_KEY} from "../JavaScript/constantes.js";
-import {construirPaginaErroXmlHttpRequest} from "../JavaScript/construir-pagina-erro-xml-http-request.js";
 import {converterUrlImagemTheMovieDb} from "../JavaScript/converter-url-imagem-the-movie-db.js";
 import {converterNumeroParaStringEmPortuguesBrasil} from "../JavaScript/converter-numero-para-string-portugues-brasil.js";
 import {converterCodigoLinguaIso6391ParaPortuguesBrasil, converterCodigoPaisIso6391ParaPortuguesBrasil,} from "../JavaScript/converter-codigo-iso-639-1-para-portugues-brasil.js";
@@ -37,7 +36,6 @@ function obterDadosDoProgramaDeTv(id, api_key, language)
 		return JSON.parse(xmlHttpRequestObject.responseText);
 	}
 	catch (e) {
-		construirPaginaErroXmlHttpRequest({xmlHttpRequestObject: xmlHttpRequestObject});
 		console.log(e);
 	}
 }

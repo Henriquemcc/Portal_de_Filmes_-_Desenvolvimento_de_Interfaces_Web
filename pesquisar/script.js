@@ -1,5 +1,4 @@
 import {LANGUAGE, MOVIE_DB_API_KEY} from "../JavaScript/constantes.js";
-import {construirPaginaErroXmlHttpRequest} from "../JavaScript/construir-pagina-erro-xml-http-request.js";
 import {converterUrlImagemTheMovieDb} from "../JavaScript/converter-url-imagem-the-movie-db.js";
 
 /**
@@ -25,7 +24,6 @@ function obterDadosDaPesquisa(query, api_key, language)
         return JSON.parse(xmlHttpRequestObject.responseText);
     }
     catch (e) {
-        construirPaginaErroXmlHttpRequest({xmlHttpRequestObject: xmlHttpRequestObject});
         console.log(e);
     }
 
