@@ -24,3 +24,17 @@ footer {
     color: #020202;
     text-align: center;
 }
+
+/* Botões de navegação: Inicio */
+
+/* Botão página anterior */
+#botao_pagina_anterior {
+    float: left;
+}
+
+/* Botão próxima página */
+#botao_proxima_pagina {
+    float: right;
+}
+
+/* Botões de navegação: Fim */
