@@ -95,7 +95,7 @@ class Avaliacao
  * Compara duas instâncias da classe Avaliacao de acordo com a data.
  * @param {Avaliacao} a Instância da classe Avaliacao a ser comparada com 'b'.
  * @param {Avaliacao} b Instância da classe Avaliacao a ser comparada com 'a'.
- * @returns Valor numérico indicando a diferença entre as datas das avaliações.
+ * @returns {Number} Valor numérico indicando a diferença entre as datas das avaliações.
  */
 function compararObjetosClasseAvaliacaoPorData(a, b)
 {
