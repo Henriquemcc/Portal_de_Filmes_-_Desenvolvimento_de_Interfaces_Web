@@ -1,0 +1,11 @@
+ATENÇÃO
+
+O Portal Meu Filmes SÓ FUNCIONA quando ele é executado em um servidor HTTP (como o Live Server do Visual Studio Code).
+
+O Portal Meu Filmes NÃO FUNCIONA abrindo arquivos HTML localmente (via gerenciador de arquivos) no browser (com a url 'file://').
+
+O Portal Meu Filmes NÃO É COMPATÍVEL com o Microsoft Internet Explorer.
+
+O Portal Meu Filmes É COMPATÍVEL com o Google Chrome, Mozilla Firefox e Microsoft Edge (baseado no Chromium).
+
+O Portal Meu Filmes também está disponível nas Páginas do GitHub em: https://henriquemcc.github.io/Portal_de_Filmes_-_Desenvolvimento_de_Interfaces_Web/
